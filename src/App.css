@@ -14,11 +14,18 @@
 }
 
 .result-container {
-  border: 1px solid #ccc;
-  padding: 15px;
-  width: 80%;
-  margin: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  box-shadow: 0px 4px 6px #ccc;
+  /* Shadow properties */
+  width: 50%;
+
+  flex-direction: column;
+  border-color: #b25610;
+  border-width: 2px;
+  border-radius: 4px;
 
 }
 
