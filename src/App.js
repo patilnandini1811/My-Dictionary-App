@@ -1,14 +1,13 @@
-
-
 import React, { useState } from 'react';
 import SearchBar from './components/SearchBar'; 
+import AudioPlayer from './components/Audio';
 import "./App.css";
 
 function App() {
   const [word, setWord] = useState("");
   const [wordInfo, setWordInfo] = useState(null);
-  const [ error, setError ] = useState("");
-  const [ searchWord, setSearchWord ] = useState("");
+  const [error, setError] = useState("");
+  const [searchWord, setSearchWord] = useState("");
 
   const fetchWordInfo = async () => {
     setError("");  
@@ -49,21 +48,19 @@ function App() {
       {wordInfo && (
         <div className="result-container">
           <h2>{searchWord}</h2>
-          {wordInfo.map((entry) => (
-            <>
-              {entry.phonetics.map((phonetic) => (
+          {wordInfo.map((entry, index) => (
+            <div key={index}>
+              {entry.phonetics.map((phonetic, phoneticIndex) => (
                 phonetic.audio && (
-                  <audio controls>
-                    <source src={phonetic.audio} type="audio/mpeg" />
-                  </audio>
+                  <AudioPlayer key={phoneticIndex} audioSrc={phonetic.audio} />
                 )
               ))}
               {entry.meanings.map((meaning) => (
-                meaning.definitions.map((definition) => (
-                  <p key={definition.definition}>{definition.definition}</p>
+                meaning.definitions.map((definition, definitionIndex) => (
+                  <p key={definitionIndex}>{definition.definition}</p>
                 ))
               ))}
-              </>
+            </div>
           ))}
         </div>
       )}
@@ -71,8 +68,8 @@ function App() {
       {error && <div className="error-container"><p>{error}</p></div>}
     </div>
   );
-  
-
 }
 
 export default App;
+
+
