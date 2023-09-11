@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>My Dictionary App</h1>
+        <h1>My Dictionary App </h1>
         <img src={process.env.PUBLIC_URL + '/dictionary.png'} alt="Description" />
       </div>
 
@@ -57,7 +57,7 @@ function App() {
               ))}
               {entry.meanings.map((meaning) => (
                 meaning.definitions.map((definition, definitionIndex) => (
-                  <p key={definitionIndex}>{definition.definition}</p>
+                  <p className='meaning-container' key={definitionIndex}>{definition.definition}</p>
                 ))
               ))}
             </div>

@@ -8,7 +8,7 @@ const StyledAudio = styled.audio`
   border-radius: 4px;
   margin:2px;
   box-shadow: 0px 4px 6px #c8dfcc;
-  /* Additional styling here */
+   //Additional styling here
 `;
 
 const Audio = ({ audioSrc }) => (

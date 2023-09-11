@@ -1,10 +1,12 @@
+body {
+  background-color: rgb(253, 253, 253);
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-
 }
 
 .container h1 {
@@ -30,18 +32,12 @@
 }
 
 .error-container {
-
   font-size: larger;
   background-color: #e8655c;
-
   color: white;
-
   margin-left: 35%;
-
   padding: 15px;
-
   text-align: center;
-
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -51,6 +47,10 @@
 
 h2 {
   color: orange;
+}
 
-
+.meaning-container {
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
 }
