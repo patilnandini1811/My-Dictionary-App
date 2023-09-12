@@ -27,4 +27,12 @@ test('renders SearchBar component and handles input', () => {
   
   expect(fetchWordInfoMock).toHaveBeenCalled();
 });
+// Test : initial render with empty input
+test('initial render has empty input', () => {
+  render(<SearchBar setWord={() => {}} fetchWordInfo={() => {}} />);
+  const searchInput = screen.getByPlaceholderText('Search for a word..');
+  expect(searchInput.value).toBe('');
+});
+
+
 
