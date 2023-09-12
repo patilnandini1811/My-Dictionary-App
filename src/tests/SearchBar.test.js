@@ -2,7 +2,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import SearchBar from './components/SearchBar';
+import SearchBar from '../components/SearchBar';
 
 test('renders SearchBar component and handles input', () => {
   const setWordMock = jest.fn();
@@ -27,3 +27,4 @@ test('renders SearchBar component and handles input', () => {
   
   expect(fetchWordInfoMock).toHaveBeenCalled();
 });
+
