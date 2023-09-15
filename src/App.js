@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import AudioPlayer from './components/Audio';
@@ -12,6 +11,7 @@ function App() {
 
   const fetchWordInfo = async () => {
     setError("");
+    setWordInfo(null);
     if (word === "") {
       setError("Search field is empty.");
       return;
@@ -42,6 +42,7 @@ function App() {
       <div className="container">
         <h1>My Dictionary App</h1>
         <img src={process.env.PUBLIC_URL + '/dictionary.png'} alt="Dictionary" />
+        
       </div>
       <SearchBar setWord={setWord} fetchWordInfo={fetchWordInfo} />
       {wordInfo && (
@@ -59,15 +60,16 @@ function App() {
                   <h4>{meaning.partOfSpeech}</h4>
                   {meaning.definitions.map((definition, definitionIndex) => (
                     <div className="meaning-container" key={definitionIndex}>
-                      <h4>Definition:</h4>
-                      <p>{definition.definition}</p>
-                      {definition.example && <p><h4>Example:</h4> {definition.example}</p>}
-                      {definition.synonyms && definition.synonyms.length > 0 && (
-                        <p><h4>Synonyms:</h4> {definition.synonyms.join(', ')}</p>
-                      )}
-                      {definition.antonyms && definition.antonyms.length > 0 && (
-                        <p><h4>Antonyms:</h4> {definition.antonyms.join(', ')}</p>
-                      )}
+                     <div> <h4>Definition:</h4>
+                      <p>{definition.definition}</p></div>
+                      {definition.example && <div><h4>Example:</h4><p>{definition.example}</p></div>}
+{definition.synonyms && definition.synonyms.length > 0 && (
+  <div><h4>Synonyms:</h4><p>{definition.synonyms.join(', ')}</p></div>
+)}
+{definition.antonyms && definition.antonyms.length > 0 && (
+  <div><h4>Antonyms:</h4><p>{definition.antonyms.join(', ')}</p></div>
+)}
+
                     </div>
                   ))}
                 </div>

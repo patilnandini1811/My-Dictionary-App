@@ -1,33 +1,38 @@
-// SearchBar.test.js
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { render, screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import'@testing-library/jest-dom/extend-expect';
+
 import SearchBar from '../components/SearchBar';
 
-test('renders SearchBar component and handles input', () => {
+// Test: renders SearchBar component and handles input
+test('renders SearchBar component and handles input', async () => {
   const setWordMock = jest.fn();
   const fetchWordInfoMock = jest.fn();
 
   render(<SearchBar setWord={setWordMock} fetchWordInfo={fetchWordInfoMock} />);
 
   
-  expect(screen.getByPlaceholderText('Search for a word..')).toBeInTheDocument();
-
-  
+  expect(screen.getByPlaceholderText('Search for a word..')).toBeInTheDocument();//  typing 'test' into the search bar
   const searchInput = screen.getByPlaceholderText('Search for a word..');
-  fireEvent.change(searchInput, { target: { value: 'test' }});
+  userEvent.type(searchInput, 'test');
 
   
-  expect(setWordMock).toHaveBeenCalledWith('test');
+  await waitFor (() => {
+    expect(setWordMock).toHaveBeenCalledWith('test');
+  });
 
   
   const searchButton = screen.getByText('Search');
-  fireEvent.click(searchButton);
+  userEvent.click(searchButton);
 
   
-  expect(fetchWordInfoMock).toHaveBeenCalled();
+  await waitFor(() => {
+    expect(fetchWordInfoMock).toHaveBeenCalled();
+  });
 });
-// Test : initial render with empty input
+
+
 test('initial render has empty input', () => {
   render(<SearchBar setWord={() => {}} fetchWordInfo={() => {}} />);
   const searchInput = screen.getByPlaceholderText('Search for a word..');
